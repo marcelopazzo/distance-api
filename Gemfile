@@ -43,4 +43,10 @@ group :development, :test do
   gem 'spring'
 end
 
+group :development do
+  gem 'guard', '~> 2.12.4'
+  gem 'guard-rspec', '~> 4.5.0', require: false
+  gem 'guard-bundler', '~> 2.1.0'
+end
+
 gem 'rails-api', '~> 0.4.0'
