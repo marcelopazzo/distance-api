@@ -24,9 +24,21 @@ class V1::LocationsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should respond not found to show a location that does not exists" do
+    get :show, id: @location.id+1
+    assert_response :not_found
+    assert_nil assigns(:location)
+  end
+
   test "should update location" do
     put :update, id: @location, name: @location.name
     assert_response 204
+  end
+
+  test "should respond not found to update a location that does not exists" do
+    get :update, id: @location.id+1, name: @location.name
+    assert_response :not_found
+    assert_nil assigns(:location)
   end
 
   test "should destroy location" do

@@ -10,7 +10,11 @@ class V1::LocationsController < ApplicationController
 
   # GET /locations/1
   def show
-    render json: @location
+    if @location.present?
+      render json: @location
+    else
+      head :not_found
+    end
   end
 
   # POST /locations
@@ -26,12 +30,14 @@ class V1::LocationsController < ApplicationController
 
   # PATCH/PUT /locations/1
   def update
-    @location = Location.find(params[:id])
-
-    if @location.update(location_params)
-      head :no_content
+    if @location.present?
+      if @location.update(location_params)
+        head :no_content
+      else
+        render json: @location.errors, status: :unprocessable_entity
+      end
     else
-      render json: @location.errors, status: :unprocessable_entity
+      head :not_found
     end
   end
 
@@ -45,7 +51,11 @@ class V1::LocationsController < ApplicationController
   private
 
     def set_location
-      @location = Location.find(params[:id])
+      @location = Location.find(params[:id]) if exists?(params[:id])
+    end
+
+    def exists?(id)
+      Location.exists? id
     end
 
     def location_params
