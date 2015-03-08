@@ -11,13 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308080713) do
+ActiveRecord::Schema.define(version: 20150308230621) do
 
   create_table "locations", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "paths", force: :cascade do |t|
+    t.integer  "point1_id"
+    t.integer  "point2_id"
+    t.decimal  "distance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "paths", ["point1_id"], name: "index_paths_on_point1_id"
+  add_index "paths", ["point2_id"], name: "index_paths_on_point2_id"
 
   create_table "points", force: :cascade do |t|
     t.string   "name"
