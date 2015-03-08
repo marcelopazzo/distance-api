@@ -43,7 +43,7 @@ class V1::LocationsController < ApplicationController
 
   # DELETE /locations/1
   def destroy
-    @location.destroy
+    @location.destroy if @location.present?
 
     head :no_content
   end

@@ -76,4 +76,12 @@ class V1::PointsControllerTest < ActionController::TestCase
 
     assert_response 204
   end
+
+  test "a idempotent api should respond no content even if point does not exists" do
+    assert_difference('Point.count', 0) do
+      delete :destroy, id: @pointA.id+1, location_id: @sp.id
+    end
+
+    assert_response 204
+  end
 end

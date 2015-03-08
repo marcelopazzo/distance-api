@@ -48,4 +48,12 @@ class V1::LocationsControllerTest < ActionController::TestCase
 
     assert_response 204
   end
+
+  test "a idempotent api should respond no content even if location does not exists" do
+    assert_difference('Location.count', 0) do
+      delete :destroy, id: @location.id+1
+    end
+
+    assert_response 204
+  end
 end
