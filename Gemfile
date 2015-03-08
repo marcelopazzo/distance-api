@@ -55,3 +55,4 @@ group :test do
 end
 
 gem 'rails-api', '~> 0.4.0'
+gem 'active_model_serializers', '~> 0.9.3'
