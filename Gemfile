@@ -50,4 +50,8 @@ group :development do
   gem 'guard-minitest', '~> 2.4.4'
 end
 
+group :test do
+  gem 'minitest-reporters', '~> 1.0.11'
+end
+
 gem 'rails-api', '~> 0.4.0'
