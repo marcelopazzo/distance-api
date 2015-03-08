@@ -2,7 +2,7 @@ require 'test_helper'
 
 class V1::LocationsControllerTest < ActionController::TestCase
   setup do
-    @location = locations(:one)
+    @location = locations(:sp)
   end
 
   test "should get index" do
