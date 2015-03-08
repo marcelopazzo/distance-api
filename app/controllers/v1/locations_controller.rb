@@ -2,7 +2,6 @@ class V1::LocationsController < ApplicationController
   before_action :set_location, only: [:show, :update, :destroy]
 
   # GET /locations
-  # GET /locations.json
   def index
     @locations = Location.all
 
@@ -10,13 +9,11 @@ class V1::LocationsController < ApplicationController
   end
 
   # GET /locations/1
-  # GET /locations/1.json
   def show
     render json: @location
   end
 
   # POST /locations
-  # POST /locations.json
   def create
     @location = Location.new(location_params)
 
@@ -28,7 +25,6 @@ class V1::LocationsController < ApplicationController
   end
 
   # PATCH/PUT /locations/1
-  # PATCH/PUT /locations/1.json
   def update
     @location = Location.find(params[:id])
 
@@ -40,7 +36,6 @@ class V1::LocationsController < ApplicationController
   end
 
   # DELETE /locations/1
-  # DELETE /locations/1.json
   def destroy
     @location.destroy
 
