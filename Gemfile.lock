@@ -78,6 +78,9 @@ GEM
       guard (~> 2.2)
       guard-compat (~> 1.1)
     guard-compat (1.2.1)
+    guard-minitest (2.4.4)
+      guard-compat (~> 1.2)
+      minitest (>= 3.0)
     guard-rspec (4.5.0)
       guard (~> 2.1)
       guard-compat (~> 1.1)
@@ -214,6 +217,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   guard (~> 2.12.4)
   guard-bundler (~> 2.1.0)
+  guard-minitest (~> 2.4.4)
   guard-rspec (~> 4.5.0)
   jbuilder (~> 2.0)
   jquery-rails
