@@ -13,7 +13,7 @@ class V1::LocationsControllerTest < ActionController::TestCase
 
   test "should create location" do
     assert_difference('Location.count') do
-      post :create, location: { name: @location.name }
+      post :create, name: @location.name
     end
 
     assert_response 201
@@ -25,7 +25,7 @@ class V1::LocationsControllerTest < ActionController::TestCase
   end
 
   test "should update location" do
-    put :update, id: @location, location: { name: @location.name }
+    put :update, id: @location, name: @location.name
     assert_response 204
   end
 
