@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    PriorityQueue (0.1.2)
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
       actionview (= 4.2.0)
@@ -210,6 +211,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  PriorityQueue (~> 0.1.2)
   active_model_serializers (~> 0.9.3)
   coffee-rails (~> 4.1.0)
   guard (~> 2.12.4)

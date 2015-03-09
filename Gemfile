@@ -52,3 +52,4 @@ end
 
 gem 'rails-api', '~> 0.4.0'
 gem 'active_model_serializers', '~> 0.9.3'
+gem 'PriorityQueue', '~> 0.1.2'

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     resources :locations, except: [:new, :edit] do
       resources :points, except: [:new, :edit]
       resources :paths, except: [:new, :edit]
+      get 'best_route', on: :member
     end
   end
 end

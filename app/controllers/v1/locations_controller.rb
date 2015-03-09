@@ -1,5 +1,5 @@
 class V1::LocationsController < ApplicationController
-  before_action :set_location, only: [:show, :update, :destroy]
+  before_action :set_location, only: [:show, :update, :destroy, :best_route]
 
   # GET /locations
   def index
@@ -14,6 +14,23 @@ class V1::LocationsController < ApplicationController
       render json: @location
     else
       head :not_found
+    end
+  end
+
+  # GET /locations/1/best_route
+  def best_route
+    source = load_point params[:source_id]
+    destination = load_point params[:destination_id]
+    autonomy = params[:autonomy].to_d
+    fuel_price = params[:fuel_price].to_d
+
+    if (source.present? && destination.present?)
+      graph = Graph.new(@location.points, @location.paths)
+      path, distance = graph.shortest_path(source, destination)
+      result = Result.new(path, distance, autonomy, fuel_price)
+      render json: result, status: :ok
+    else
+      head :bad_request
     end
   end
 
@@ -52,6 +69,10 @@ class V1::LocationsController < ApplicationController
 
     def set_location
       @location = Location.find(params[:id]) if exists?(params[:id])
+    end
+
+    def load_point(id)
+      @location.points.find(id) if @location.points.exists?(id)
     end
 
     def exists?(id)

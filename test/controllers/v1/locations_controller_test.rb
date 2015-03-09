@@ -58,4 +58,28 @@ class V1::LocationsControllerTest < ActionController::TestCase
 
     assert_response 204
   end
+
+  test "should show location graph" do
+    @sp = locations(:sp)
+    @source = points(:a)
+    @destination = points(:d)
+    get :best_route, id: @sp, source_id: @source.id, destination_id: @destination.id,
+      autonomy: 10, fuel_price: 2.5
+
+    result = JSON::parse(response.body)
+    assert_equal("6.25", result["cost"])
+    assert_equal(["A", "B", "D"], result["path"])
+    assert_response :ok
+  end
+
+  test "should not calculate route for points in different maps" do
+    @sp = locations(:sp)
+    @source = points(:a)
+    @destination = points(:two)
+    get :best_route, id: @sp, source_id: @source.id, destination_id: @destination.id,
+      autonomy: 10, fuel_price: 2.5
+
+    assert_response :bad_request
+  end
+
 end
