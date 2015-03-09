@@ -4,3 +4,33 @@ one:
   point1_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
   point2_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
   distance: 5
+
+path_1:
+  point1_id: <%= ActiveRecord::FixtureSet.identify(:a) %>
+  point2_id: <%= ActiveRecord::FixtureSet.identify(:b) %>
+  distance: 10
+
+path_2:
+  point1_id: <%= ActiveRecord::FixtureSet.identify(:b) %>
+  point2_id: <%= ActiveRecord::FixtureSet.identify(:d) %>
+  distance: 15
+
+path_3:
+  point1_id: <%= ActiveRecord::FixtureSet.identify(:a) %>
+  point2_id: <%= ActiveRecord::FixtureSet.identify(:c) %>
+  distance: 20
+
+path_4:
+  point1_id: <%= ActiveRecord::FixtureSet.identify(:c) %>
+  point2_id: <%= ActiveRecord::FixtureSet.identify(:d) %>
+  distance: 30
+
+path_5:
+  point1_id: <%= ActiveRecord::FixtureSet.identify(:b) %>
+  point2_id: <%= ActiveRecord::FixtureSet.identify(:e) %>
+  distance: 50
+
+path_6:
+  point1_id: <%= ActiveRecord::FixtureSet.identify(:d) %>
+  point2_id: <%= ActiveRecord::FixtureSet.identify(:e) %>
+  distance: 30
