@@ -23,6 +23,11 @@ class PathTest < ActiveSupport::TestCase
     assert_not path.save, "Saved path without distance"
   end
 
+  test "should not accept negative distance" do
+    path = Path.new(point1: @pointA, point2: @pointB, distance: -10)
+    assert_not path.save, "Saved path with negative distance"
+  end
+
   test "should create path" do
     path = Path.new(point1: @pointA, point2: @pointB, distance: 10)
     assert path.save

@@ -3,6 +3,8 @@ class Path < ActiveRecord::Base
   belongs_to :point2, class_name: "Point"
 
   validates :point1, :point2, :distance, presence: true
+  validates :distance, numericality: { greater_than: 0 }
+
   validate :points_belongs_to_same_location,
     :path_is_unique_in_other_direction, :if => :has_points?
 
