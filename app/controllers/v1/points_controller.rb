@@ -22,7 +22,7 @@ class V1::PointsController < ApplicationController
     @point = Point.new(point_params)
 
     if @point.save
-      render json: @point, status: :created
+      render json: @point, status: :created, location: point_url(@point)
     else
       render json: @point.errors, status: :unprocessable_entity
     end
@@ -64,5 +64,9 @@ class V1::PointsController < ApplicationController
 
     def point_params
       params.permit(:name, :location_id)
+    end
+
+    def point_url(point)
+      location_point_url(location_id: point.location.id, id: point.id)
     end
 end

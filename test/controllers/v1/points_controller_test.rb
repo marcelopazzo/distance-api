@@ -13,6 +13,7 @@ class V1::PointsControllerTest < ActionController::TestCase
     get :index, location_id: @sp.id
     assert_response :success
     assert_not_nil assigns(:points)
+    assert_not_empty assigns(:points)
   end
 
   test "should not list another location points" do
@@ -33,6 +34,7 @@ class V1::PointsControllerTest < ActionController::TestCase
     end
 
     assert_response 201
+    assert_match(/\/locations\/\d+\/points\/\d+$/, response.location)
   end
 
   test "should show point" do

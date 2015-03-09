@@ -9,6 +9,7 @@ class V1::LocationsControllerTest < ActionController::TestCase
     get :index
     assert_response :success
     assert_not_nil assigns(:locations)
+    assert_not_empty assigns(:locations)
   end
 
   test "should create location" do
@@ -17,6 +18,7 @@ class V1::LocationsControllerTest < ActionController::TestCase
     end
 
     assert_response 201
+    assert_match(/\/locations\/\d+$/, response.location)
   end
 
   test "should show location" do
