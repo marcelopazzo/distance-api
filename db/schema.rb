@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(version: 20150308230621) do
   create_table "paths", force: :cascade do |t|
     t.integer  "point1_id"
     t.integer  "point2_id"
-    t.decimal  "distance"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.decimal  "distance",   precision: 10, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   add_index "paths", ["point1_id"], name: "index_paths_on_point1_id"

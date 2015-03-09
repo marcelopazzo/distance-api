@@ -1,0 +1,6 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  point1_id: <%= ActiveRecord::FixtureSet.identify(:one) %>
+  point2_id: <%= ActiveRecord::FixtureSet.identify(:two) %>
+  distance: 5

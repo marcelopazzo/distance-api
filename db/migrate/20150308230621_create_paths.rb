@@ -3,7 +3,7 @@ class CreatePaths < ActiveRecord::Migration
     create_table :paths do |t|
       t.references :point1, index: true
       t.references :point2, index: true
-      t.decimal :distance
+      t.decimal :distance, :precision => 10, :scale => 2
 
       t.timestamps null: false
     end
