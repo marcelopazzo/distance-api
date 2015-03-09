@@ -6,4 +6,6 @@ Rails.application.routes.draw do
       get 'best_route', on: :member
     end
   end
+
+  root to: redirect('/locations')
 end
