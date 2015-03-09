@@ -1,16 +1,21 @@
 class V1::PathsController < ApplicationController
+  before_action :set_location
   before_action :set_path, only: [:show, :update, :destroy]
 
   # GET locations/:location_id/paths
   def index
-    @paths = Path.all
+    @paths = @location.paths
 
     render json: @paths
   end
 
   # GET locations/:location_id/paths/1
   def show
-    render json: @path
+    if @path.present?
+      render json: @path
+    else
+      head :not_found
+    end
   end
 
   # POST locations/:location_id/paths
@@ -26,18 +31,20 @@ class V1::PathsController < ApplicationController
 
   # PATCH/PUT locations/:location_id/paths/1
   def update
-    @path = Path.find(params[:id])
-
-    if @path.update(path_params)
-      head :no_content
+    if @path.present?
+      if @path.update(path_params)
+        head :no_content
+      else
+        render json: @path.errors, status: :unprocessable_entity
+      end
     else
-      render json: @path.errors, status: :unprocessable_entity
+      head :not_found
     end
   end
 
   # DELETE locations/:location_id/paths/1
   def destroy
-    @path.destroy
+    @path.destroy if @path.present?
 
     head :no_content
   end
@@ -45,7 +52,15 @@ class V1::PathsController < ApplicationController
   private
 
     def set_path
-      @path = Path.find(params[:id])
+      @path = Path.find(params[:id]) if exists? params[:id]
+    end
+
+    def exists?(id)
+      @location.paths.collect(&:id).include? id.to_i
+    end
+
+    def set_location
+      @location = Location.find(params[:location_id]) if Location.exists?(params[:location_id])
     end
 
     def path_params
