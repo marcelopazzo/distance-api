@@ -82,4 +82,10 @@ class V1::LocationsControllerTest < ActionController::TestCase
     assert_response :bad_request
   end
 
+  test "should not break if we forget a param" do
+    @sp = locations(:sp)
+    get :best_route, id: @sp
+    assert_response :bad_request
+  end
+
 end
