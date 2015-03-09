@@ -33,7 +33,7 @@ Or use a deployed version available online at http://distance-api.herokuapp.com/
   * `DELETE: /locations/:location_id/paths/:id`
 
 ### Usage
-The api can be used with any REST client. This is a sample using `curl`:
+The api can be used with any REST client. This is just a sample using `curl`:
 
 ```shell
 $ curl -v -H "Content-Type: application/json" -d '{"name": "SP"}' http://distance-api.herokuapp.com/locations
@@ -88,3 +88,27 @@ curl -H "Content-Type: application/json" -d \
   '{"point1_id": 4, "point2_id": 5, "distance": 30}' \
   http://distance-api.herokuapp.com/locations/1/paths
 ```
+
+Now let's check the created resources:
+
+```shell
+$ curl -H "Content-Type: application/json" http://distance-api.herokuapp.com/locations/1/points
+[{"id":1,"name":"A"},{"id":2,"name":"B"},{"id":3,"name":"C"},{"id":4,"name":"D"},{"id":5,"name":"E"}]
+
+$ curl -H "Content-Type: application/json" http://distance-api.herokuapp.com/locations/1/paths
+[{"id":1,"distance":"10.0","point1":{"id":1,"name":"A"},"point2":{"id":2,"name":"B"}},
+{"id":3,"distance":"20.0","point1":{"id":1,"name":"A"},"point2":{"id":3,"name":"C"}},
+{"id":2,"distance":"15.0","point1":{"id":2,"name":"B"},"point2":{"id":4,"name":"D"}},
+{"id":5,"distance":"50.0","point1":{"id":2,"name":"B"},"point2":{"id":5,"name":"E"}},
+{"id":4,"distance":"30.0","point1":{"id":3,"name":"C"},"point2":{"id":4,"name":"D"}},
+{"id":6,"distance":"30.0","point1":{"id":4,"name":"D"},"point2":{"id":5,"name":"E"}}]
+```
+
+Ok, our scenario is set up. Let's hit the best_route endpoint:
+
+```shell
+$ curl -H "Content-Type: application/json" http://distance-api.herokuapp.com/locations/1/best_route\?source_id\=1\&destination_id\=4\&autonomy\=10\&fuel_price\=2.5
+{"cost":"6.25","path":["A","B","D"]}
+```
+
+And we found the expected results! \o/
