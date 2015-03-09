@@ -7,7 +7,7 @@ class LocationTest < ActiveSupport::TestCase
   end
 
   test "should not save location with non unique name" do
-    @location = locations(:sp)
+    @location = locations(:ce)
     location = Location.new(name: @location.name)
     assert_not location.save, "Saved location non unique name"
   end

@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: A
-  location: sp
+  name: one
+  location: ce
 
 two:
-  name: B
-  location: sp
+  name: two
+  location: ce
 
 three:
-  name: C
+  name: three
   location: rj
 
 four:
-  name: D
-  location: sp
+  name: four
+  location: ce

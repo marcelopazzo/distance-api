@@ -2,7 +2,7 @@ require 'test_helper'
 
 class V1::PointsControllerTest < ActionController::TestCase
   setup do
-    @sp = locations(:sp)
+    @sp = locations(:ce)
     @mg = locations(:mg)
     @pointA = points(:one)
     @pointB = points(:two)
