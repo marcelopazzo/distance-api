@@ -50,6 +50,11 @@ group :test do
   gem 'minitest-reporters', '~> 1.0.11'
 end
 
+group :production do
+  gem 'pg', '~> 0.18.1'
+  gem 'rails_12factor', '~> 0.0.3'
+end
+
 gem 'rails-api', '~> 0.4.0'
 gem 'active_model_serializers', '~> 0.9.3'
 gem 'PriorityQueue', '~> 0.1.2'
