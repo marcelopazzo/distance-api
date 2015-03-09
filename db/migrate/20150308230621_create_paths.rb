@@ -7,7 +7,7 @@ class CreatePaths < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :paths, :point1s
-    add_foreign_key :paths, :point2s
+    add_foreign_key :paths, :points, column: :point1_id
+    add_foreign_key :paths, :points, column: :point2_id
   end
 end
