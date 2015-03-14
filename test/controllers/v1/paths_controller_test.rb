@@ -11,6 +11,26 @@ class V1::PathsControllerTest < ActionController::TestCase
     @path = paths(:one)
   end
 
+  test 'should route to paths' do
+    assert_routing '/locations/2/paths', { controller: "v1/paths", action: "index", location_id: "2" }
+  end
+
+  test 'should route to create path' do
+    assert_routing({method: 'post', path: '/locations/2/paths'}, { controller: "v1/paths", action: "create", location_id: "2" })
+  end
+
+  test 'should route to path 1' do
+    assert_routing '/locations/2/paths/1', { controller: "v1/paths", action: "show", location_id: "2", id: "1" }
+  end
+
+  test 'should route to update path 1' do
+    assert_routing({method: 'put', path: '/locations/2/paths/1'}, { controller: "v1/paths", action: "update", location_id: "2", id: "1" })
+  end
+
+  test 'should route to destroy path 1' do
+    assert_routing({method: 'delete', path: '/locations/2/paths/1'}, { controller: "v1/paths", action: "destroy", location_id: "2", id: "1" })
+  end
+
   test "should get index" do
     get :index, location_id: @ce.id
     assert_response :success
