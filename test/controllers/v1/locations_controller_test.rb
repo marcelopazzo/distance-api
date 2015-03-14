@@ -12,6 +12,30 @@ class V1::LocationsControllerTest < ActionController::TestCase
     assert_not_empty assigns(:locations)
   end
 
+  test 'should route to locations' do
+    assert_routing '/locations', { controller: "v1/locations", action: "index" }
+  end
+
+  test 'should route to create location' do
+    assert_routing({method: 'post', path: '/locations'}, { controller: "v1/locations", action: "create" })
+  end
+
+  test 'should route to location 1' do
+    assert_routing '/locations/1', { controller: "v1/locations", action: "show", id: "1" }
+  end
+
+  test 'should route to update location 1' do
+    assert_routing({method: 'put', path: '/locations/1'}, { controller: "v1/locations", action: "update", id: "1" })
+  end
+
+  test 'should route to destroy location 1' do
+    assert_routing({method: 'delete', path: '/locations/1'}, { controller: "v1/locations", action: "destroy", id: "1" })
+  end
+
+  test 'should route location 1 best_route' do
+    assert_routing '/locations/1/best_route', { controller: "v1/locations", action: "best_route", id: "1" }
+  end
+
   test "should create location" do
     assert_difference('Location.count') do
       post :create, name: "new #{@location.name}"
