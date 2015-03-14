@@ -1,6 +1,8 @@
 # distance-api
 
 [![Build Status](https://travis-ci.org/marcelopazzo/distance-api.svg?branch=master)](https://travis-ci.org/marcelopazzo/distance-api)
+[![Code Climate](https://codeclimate.com/github/marcelopazzo/distance-api/badges/gpa.svg)](https://codeclimate.com/github/marcelopazzo/distance-api)
+[![Test Coverage](https://codeclimate.com/github/marcelopazzo/distance-api/badges/coverage.svg)](https://codeclimate.com/github/marcelopazzo/distance-api)
 
 This is a Rails REST API designed to calculate the best route between two points in a location using Dijkstra's algorithm (found [here](https://github.com/marcelopazzo/distance-api/blob/master/app/models/graph.rb)).
 

@@ -47,6 +47,7 @@ end
 
 group :test do
   gem 'minitest-reporters', '~> 1.0.11'
+  gem "codeclimate-test-reporter", require: nil
 end
 
 group :production do
