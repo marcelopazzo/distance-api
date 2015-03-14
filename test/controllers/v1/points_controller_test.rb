@@ -9,6 +9,26 @@ class V1::PointsControllerTest < ActionController::TestCase
     @pointC = points(:three)
   end
 
+  test 'should route to points' do
+    assert_routing '/locations/2/points', { controller: "v1/points", action: "index", location_id: "2" }
+  end
+
+  test 'should route to create point' do
+    assert_routing({method: 'post', path: '/locations/2/points'}, { controller: "v1/points", action: "create", location_id: "2" })
+  end
+
+  test 'should route to point 1' do
+    assert_routing '/locations/2/points/1', { controller: "v1/points", action: "show", location_id: "2", id: "1" }
+  end
+
+  test 'should route to update point 1' do
+    assert_routing({method: 'put', path: '/locations/2/points/1'}, { controller: "v1/points", action: "update", location_id: "2", id: "1" })
+  end
+
+  test 'should route to destroy point 1' do
+    assert_routing({method: 'delete', path: '/locations/2/points/1'}, { controller: "v1/points", action: "destroy", location_id: "2", id: "1" })
+  end
+
   test "should list points" do
     get :index, location_id: @ce.id
     assert_response :success
