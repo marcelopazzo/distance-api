@@ -45,6 +45,14 @@ class V1::LocationsControllerTest < ActionController::TestCase
     assert_match(/\/locations\/\d+$/, response.location)
   end
 
+  test "should not create location without name" do
+    assert_difference('Location.count', 0) do
+      post :create, name: ""
+    end
+
+    assert_response 422
+  end
+
   test "should show location" do
     get :show, id: @location
     assert_response :success
@@ -59,6 +67,11 @@ class V1::LocationsControllerTest < ActionController::TestCase
   test "should update location" do
     put :update, id: @location, name: @location.name
     assert_response 204
+  end
+
+  test "should not update location without name" do
+    put :update, id: @location, name: ""
+    assert_response 422
   end
 
   test "should respond not found to update a location that does not exists" do

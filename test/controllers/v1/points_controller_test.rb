@@ -57,6 +57,14 @@ class V1::PointsControllerTest < ActionController::TestCase
     assert_match(/\/locations\/\d+\/points\/\d+$/, response.location)
   end
 
+  test "should not create a invalid point" do
+    assert_difference('Point.count', 0) do
+      post :create, location_id: @ce.id
+    end
+
+    assert_response 422
+  end
+
   test "should show point" do
     get :show, id: @pointA, location_id: @ce.id
     assert_response :success
@@ -77,6 +85,11 @@ class V1::PointsControllerTest < ActionController::TestCase
   test "should update point" do
     put :update, id: @pointA, location_id: @ce.id, name: @pointA.name
     assert_response 204
+  end
+
+  test "should not update to a invalid point" do
+    put :update, id: @pointA, location_id: @ce.id, name: ""
+    assert_response 422
   end
 
   test "should respond not found to update a point that does not exists" do

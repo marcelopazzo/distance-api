@@ -54,6 +54,13 @@ class V1::PathsControllerTest < ActionController::TestCase
     assert_match(/\/locations\/\d+\/paths\/\d+$/, response.location)
   end
 
+  test "should not create invalid path" do
+    assert_difference('Path.count', 0) do
+      post :create, location_id: @ce.id
+    end
+    assert_response 422
+  end
+
   test "should show path" do
     get :show, id: @path, location_id: @ce.id
     assert_response :success
@@ -74,6 +81,11 @@ class V1::PathsControllerTest < ActionController::TestCase
   test "should update path" do
     put :update, id: @path, location_id: @ce.id, distance: @path.distance, point1_id: @path.point1_id, point2_id: @path.point2_id
     assert_response 204
+  end
+
+  test "should not update to a invalid path " do
+    put :update, id: @path, location_id: @ce.id, distance: @path.distance, point1_id: 0, point2_id: 0
+    assert_response 422
   end
 
   test "should respond not found to update a path that does not exists" do
