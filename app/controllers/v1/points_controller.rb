@@ -19,13 +19,7 @@ class V1::PointsController < ApplicationController
 
   # POST locations/:location_id/points
   def create
-    @point = Point.new(point_params)
-
-    if @point.save
-      render json: @point, status: :created, location: point_url(@point)
-    else
-      render json: @point.errors, status: :unprocessable_entity
-    end
+    create_resource(Point.new(point_params), Proc.new { |r| point_url(r) })
   end
 
   # PATCH/PUT locations/:location_id/points/1

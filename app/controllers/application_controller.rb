@@ -16,4 +16,12 @@ class ApplicationController < ActionController::API
       head :not_found
     end
   end
+
+  def create_resource(resource, proc)
+    if resource.save
+      render json: resource, status: :created, location: proc.call(resource)
+    else
+      render json: resource.errors, status: :unprocessable_entity
+    end
+  end
 end

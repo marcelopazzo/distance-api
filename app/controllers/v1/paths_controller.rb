@@ -20,13 +20,7 @@ class V1::PathsController < ApplicationController
 
   # POST locations/:location_id/paths
   def create
-    @path = Path.new(path_params)
-
-    if @path.save
-      render json: @path, status: :created, location: path_url(@path)
-    else
-      render json: @path.errors, status: :unprocessable_entity
-    end
+    create_resource(Path.new(path_params), Proc.new { |r| path_url(r) })
   end
 
   # PATCH/PUT locations/:location_id/paths/1
