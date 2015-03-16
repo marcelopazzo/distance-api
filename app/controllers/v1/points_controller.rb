@@ -30,15 +30,7 @@ class V1::PointsController < ApplicationController
 
   # PATCH/PUT locations/:location_id/points/1
   def update
-    if @point.present?
-      if @point.update(point_params)
-        head :no_content
-      else
-        render json: @point.errors, status: :unprocessable_entity
-      end
-    else
-      head :not_found
-    end
+    update_resource(@point, point_params)
   end
 
   # DELETE locations/:location_id/points/1

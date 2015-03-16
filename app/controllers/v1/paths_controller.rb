@@ -31,15 +31,7 @@ class V1::PathsController < ApplicationController
 
   # PATCH/PUT locations/:location_id/paths/1
   def update
-    if @path.present?
-      if @path.update(path_params)
-        head :no_content
-      else
-        render json: @path.errors, status: :unprocessable_entity
-      end
-    else
-      head :not_found
-    end
+    update_resource(@path, path_params)
   end
 
   # DELETE locations/:location_id/paths/1

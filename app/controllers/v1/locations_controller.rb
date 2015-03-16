@@ -43,15 +43,7 @@ class V1::LocationsController < ApplicationController
 
   # PATCH/PUT /locations/1
   def update
-    if @location.present?
-      if @location.update(location_params)
-        head :no_content
-      else
-        render json: @location.errors, status: :unprocessable_entity
-      end
-    else
-      head :not_found
-    end
+    update_resource(@location, location_params)
   end
 
   # DELETE /locations/1
