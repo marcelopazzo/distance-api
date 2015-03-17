@@ -56,12 +56,26 @@ class V1::LocationsControllerTest < ActionController::TestCase
   test "should show location" do
     get :show, id: @location
     assert_response :success
+    assert_not_nil assigns(:location)
   end
 
   test "should respond not found to show a location that does not exists" do
     get :show, id: @location.id+1
     assert_response :not_found
     assert_nil assigns(:location)
+  end
+
+  test "should also show location by name" do
+    get :show, id: @location.name
+    assert_response :success
+    assert_not_nil assigns(:location)
+  end
+
+  test "should work with numeric names" do
+    numeric_location = locations(:numeric_name)
+    get :show, id: numeric_location.name
+    assert_response :success
+    assert_not_nil assigns(:location)
   end
 
   test "should update location" do
