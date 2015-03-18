@@ -35,3 +35,7 @@ d:
 e:
   name: E
   location: sp
+
+numeric_name:
+  name: 154
+  location: ce

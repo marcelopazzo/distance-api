@@ -70,6 +70,19 @@ class V1::PointsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "should also show point by name" do
+    get :show, id: @pointA.name, location_id: @ce.id
+    assert_response :success
+    assert_not_nil assigns(:point)
+  end
+
+  test "should work with numeric names" do
+    numeric_point = points(:numeric_name)
+    get :show, id: numeric_point.name, location_id: @ce.id
+    assert_response :success
+    assert_not_nil assigns(:point)
+  end
+
   test "should respond not found to show a point that does not exists" do
     get :show, id: @pointA.id+1, location_id: @ce.id
     assert_response :not_found

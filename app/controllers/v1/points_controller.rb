@@ -37,7 +37,9 @@ class V1::PointsController < ApplicationController
   private
 
     def set_point
-      @point = location_points.find(params[:id]) if exists? params[:id]
+      @point = exists?(params[:id]) ?
+        location_points.find(params[:id]) :
+        location_points.find_by(name: params[:id])
     end
 
     def exists?(id)
