@@ -16,4 +16,16 @@ class LocationTest < ActiveSupport::TestCase
     location = Location.new(name: "RS")
     assert location.save
   end
+
+  test "should be searchable by id" do
+    @location = locations(:ce)
+    location = Location.find_by_id_or_name(@location.id)
+    assert_equal(@location, location)
+  end
+
+  test "should be searchable by name" do
+    @location = locations(:ce)
+    location = Location.find_by_id_or_name(@location.name)
+    assert_equal(@location, location)
+  end
 end
