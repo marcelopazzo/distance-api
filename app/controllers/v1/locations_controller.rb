@@ -56,16 +56,11 @@ class V1::LocationsController < ApplicationController
   private
 
     def set_location
-      @location = exists?(params[:id]) ?
-        Location.find(params[:id]) : Location.find_by(name: params[:id])
+      @location = Location.find_by_id_or_name(params[:id])
     end
 
     def load_point(id)
       @location.points.find(id) if @location.points.exists?(id)
-    end
-
-    def exists?(id)
-      Location.exists? id
     end
 
     def location_params
