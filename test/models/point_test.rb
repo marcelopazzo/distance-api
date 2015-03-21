@@ -25,4 +25,17 @@ class PointTest < ActiveSupport::TestCase
     point = Point.new(name: "E", location_id: @location.id)
     assert point.save
   end
+
+  test "should be searchable by id" do
+    @point = points(:one)
+    point = Point.find_by_id_or_name(@point.id)
+    assert_equal(@point, point)
+  end
+
+  test "should be searchable by name" do
+    @point = points(:one)
+    point = Point.find_by_id_or_name(@point.name)
+    assert_equal(@point, point)
+  end
+
 end
