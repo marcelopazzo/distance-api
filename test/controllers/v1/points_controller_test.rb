@@ -76,6 +76,12 @@ class V1::PointsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:point)
   end
 
+  test "should be able to search location by name too" do
+    get :show, id: @pointA.name, location_id: @ce.name
+    assert_response :success
+    assert_not_nil assigns(:point)
+  end
+
   test "should work with numeric names" do
     numeric_point = points(:numeric_name)
     get :show, id: numeric_point.name, location_id: @ce.id

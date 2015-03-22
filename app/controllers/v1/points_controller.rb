@@ -1,4 +1,5 @@
 class V1::PointsController < ApplicationController
+  before_action :set_location
   before_action :set_point, only: [:show, :update, :destroy]
 
   # GET locations/:location_id/points
@@ -36,18 +37,20 @@ class V1::PointsController < ApplicationController
 
   private
 
+    def set_location
+      @location = Location.find_by_id_or_name(params[:location_id])
+    end
+
     def set_point
-      @point = exists?(params[:id]) ?
-        location_points.find(params[:id]) :
-        location_points.find_by(name: params[:id])
+      @point = location_points.find_by_id_or_name(params[:id])
     end
 
     def exists?(id)
-      location_points.exists? id
+      location_points.exists?(id) if @location.present?
     end
 
     def location_points
-      Point.by_location params[:location_id]
+      @location.points if @location.present?
     end
 
     def point_params
