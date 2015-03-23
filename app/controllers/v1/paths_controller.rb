@@ -46,7 +46,7 @@ class V1::PathsController < ApplicationController
     end
 
     def set_location
-      @location = Location.find(params[:location_id]) if Location.exists?(params[:location_id])
+      @location = Location.find_by_id_or_name(params[:location_id])
     end
 
     def path_params

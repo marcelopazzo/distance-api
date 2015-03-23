@@ -38,6 +38,13 @@ class V1::PathsControllerTest < ActionController::TestCase
     assert_not_empty assigns(:paths)
   end
 
+  test "should also list paths by location name" do
+    get :index, location_id: @ce.name
+    assert_response :success
+    assert_not_nil assigns(:paths)
+    assert_not_empty assigns(:paths)
+  end
+
   test "should not list another location paths" do
     get :index, location_id: @mg.id
     assert_response :success
